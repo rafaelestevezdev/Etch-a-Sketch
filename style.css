@@ -1,0 +1,327 @@
+/**
+ * Etch-a-Sketch - Estilos principales
+ * Aplicación de dibujo interactivo
+ * 
+ * @author: Tu Nombre
+ * @version: 1.0.0
+ * @lastModified: 2025-04-06
+ */
+
+/* ==================== IMPORTS ==================== */
+/* Importando fuentes de Google Fonts - optimizado para cargar solo los pesos necesarios */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Quicksand:wght@500;700&display=swap');
+
+/* ==================== VARIABLES ==================== */
+:root {
+  /* Esquema de colores - facilita la gestión centralizada de colores */
+  --primary: #E63946;
+  --background: #F1FAEE;
+  --light-accent: #A8DADC;
+  --medium-accent: #457B9D;
+  --dark-accent: #1D3557;
+  
+  /* Espaciados consistentes para mantener ritmo vertical */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  
+  /* Sombras reutilizables */
+  --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 8px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
+  
+  /* Bordes y radios */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  
+  /* Transiciones consistentes */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+/* ==================== RESET Y ESTILOS GENERALES ==================== */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Mejora la accesibilidad para el foco en elementos interactivos */
+:focus {
+  outline: 3px solid var(--medium-accent);
+  outline-offset: 2px;
+}
+
+/* Asegura que el esquema de foco solo se muestre cuando se navega con teclado */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--background);
+  color: var(--dark-accent);
+  padding: var(--spacing-lg);
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* ==================== TIPOGRAFÍA ==================== */
+h1 {
+  font-family: 'Quicksand', sans-serif;
+  font-size: clamp(1.5rem, 4vw, 2.2rem); /* Tipografía responsiva */
+  text-align: center;
+  margin-bottom: var(--spacing-md);
+  color: var(--dark-accent);
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* ==================== LAYOUT Y CONTENEDORES ==================== */
+.wrapper {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: var(--spacing-sm);
+}
+
+.container {
+  border-radius: var(--radius-md);
+  height: min(500px, 80vh); /* Valor responsivo usando min() */
+  width: min(500px, 95vw); /* Valor responsivo usando min() */
+  border: none;
+  box-shadow: var(--shadow-md);
+  margin-top: var(--spacing-sm);
+  background-color: white;
+  transition: box-shadow var(--transition-normal);
+  overflow: hidden;
+  position: relative;
+}
+
+.container:hover {
+  box-shadow: var(--shadow-lg);
+}
+
+/* ==================== CONTROLES Y HERRAMIENTAS ==================== */
+.controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--spacing-sm);
+  width: 100%;
+  max-width: 500px;
+  margin-bottom: var(--spacing-md);
+}
+
+/* ==================== BOTONES ==================== */
+/* Base para todos los botones */
+button {
+  font-size: 0.875rem; /* 14px */
+  padding: 0.375rem 0.75rem; /* 6px 12px */
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Elemento de ondulación al hacer clic (efecto Material Design) */
+button::after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: radial-gradient(circle, #fff 10%, transparent 10%);
+  background-repeat: no-repeat;
+  background-position: 50%;
+  transform: scale(10, 10);
+  opacity: 0;
+  transition: transform 0.5s, opacity 0.8s;
+}
+
+button:active::after {
+  transform: scale(0, 0);
+  opacity: 0.3;
+  transition: 0s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-sm);
+}
+
+button:focus {
+  outline: 2px solid var(--medium-accent);
+  outline-offset: 2px;
+}
+
+/* Botones específicos */
+.clear-btn {
+  background-color: var(--primary);
+}
+
+.random-color {
+  background: linear-gradient(to right, 
+    #ff0000, #ff8000, #ffff00, #00ff00, #00ffff, #0000ff, #8000ff, #ff0000
+  );
+  background-size: 200% auto;
+  animation: rainbow 3s linear infinite;
+}
+
+.black-color {
+  background-color: #000000;
+}
+
+/* ==================== CONTROL DE TAMAÑO ==================== */
+.size-control {
+  margin-top: var(--spacing-sm);
+  width: 100%;
+  max-width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.size-control label {
+  margin-bottom: var(--spacing-sm);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.size-value {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* ==================== CONTROLES DE RANGO ==================== */
+input[type="range"] {
+  width: 100%;
+  height: 6px;  
+  background: var(--light-accent);
+  border-radius: 5px;
+  outline: none;
+  margin: var(--spacing-sm) 0;
+  -webkit-appearance: none; /* Elimina el estilo por defecto */
+  appearance: none;
+}
+
+/* Estilo para navegadores Webkit (Chrome, Safari, Opera) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-fast);
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* Estilo para Firefox */
+input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--primary);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: transform var(--transition-fast);
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.1);
+}
+
+/* ==================== CUADRÍCULA Y CELDAS ==================== */
+.cell {
+  transition: background-color 0.1s ease;
+  border: 0.5px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ==================== ANIMACIONES ==================== */
+@keyframes rainbow {
+  0% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+  100% { background-position: 0% center; }
+}
+
+/* ==================== INSTRUCCIONES ==================== */
+.instructions {
+  margin-top: var(--spacing-md);
+  font-size: 0.9rem;
+  color: var(--medium-accent);
+  text-align: center;
+  opacity: 0.8;
+}
+
+/* ==================== FOOTER ==================== */
+footer {
+  margin-top: var(--spacing-lg);
+  width: 100%;
+  text-align: center;
+}
+
+/* ==================== MEDIA QUERIES ==================== */
+/* Ajustes para dispositivos móviles */
+@media (max-width: 576px) {
+  .controls {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+  
+  button {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+  
+  .size-control {
+    max-width: 100%;
+  }
+}
+
+/* Para pantallas medianas */
+@media (min-width: 577px) and (max-width: 768px) {
+  .controls {
+    max-width: 90%;
+  }
+}
+
+/* Para pantallas grandes y de alta densidad */
+@media (min-width: 1200px) or (-webkit-min-device-pixel-ratio: 2) {
+  body {
+    font-size: 1.1rem;
+  }
+}
+
+/* ==================== ESTADO DE FOCO VISIBLE (ACCESIBILIDAD) ==================== */
+.focus-visible {
+  outline: 3px solid var(--primary) !important;
+  outline-offset: 3px !important;
+}
+

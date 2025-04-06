@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta etiquetas básicas -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Meta etiquetas para compartir en redes sociales -->
+    <meta property="og:title" content="Etch-a-Sketch Digital">
+    <meta property="og:description" content="Dibuja y crea arte pixelado con esta aplicación interactiva">
+    <meta property="og:type" content="website">
+    
+    <!-- Título y recursos -->
+    <title>Etch-a-Sketch</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="assets/icon/color-palette-icon.png">
+</head>
+<body>
+    <!-- Contenedor principal -->
+    <div class="wrapper">
+        <!-- Encabezado de la aplicación -->
+        <header>
+            <h1>Etch-a-Sketch</h1>
+        </header>
+        
+        <!-- Contenido principal -->
+        <main>
+            <!-- Panel de controles de la aplicación -->
+            <div class="controls" role="toolbar" aria-label="Herramientas de dibujo">
+                <!-- Botones de acción -->
+                <button class="clear-btn" aria-label="Limpiar dibujo">Clear</button>
+                <button class="random-color" aria-label="Usar colores aleatorios">Random Color</button>
+                <button class="black-color" aria-label="Usar color negro">Black color</button>
+                
+                <!-- Control de tamaño de la cuadrícula -->
+                <div class="size-control">
+                    <label for="grid-size">Grid Size: <span class="size-value" aria-live="polite">16x16</span></label>
+                    <input type="range" id="grid-size" min="8" max="64" value="16" 
+                           aria-valuemin="8" aria-valuemax="64" aria-valuenow="16">
+                </div>
+            </div>
+
+            <!-- Contenedor de la cuadrícula de dibujo -->
+            <div class="container" role="region" aria-label="Área de dibujo">
+                <!-- La cuadrícula se generará dinámicamente con JavaScript -->
+            </div>
+        </main>
+        
+        <!-- Información de ayuda opcional -->
+        <footer>
+            <p class="instructions">Haz clic y arrastra para dibujar</p>
+        </footer>
+    </div>
+
+    <!-- Scripts de JavaScript -->
+    <script src="script.js"></script>
+</body>
+</html>
