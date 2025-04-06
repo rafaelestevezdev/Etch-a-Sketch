@@ -22,13 +22,13 @@ Etch-a-Sketch Digital es una aplicación web interactiva que simula el popular j
 
 ## 💻 Demo en vivo
 
-[Ver demo](https://tu-nombre-de-usuario.github.io/etch-a-sketch/) (Reemplaza con tu URL real cuando esté disponible)
+[Ver demo](https://rafaelestevezdev.github.io/Etch-a-Sketch/) 
 
 ## 🚀 Instalación y uso
 
 1. Clona este repositorio:
 ```bash
-git clone https://github.com/tu-nombre-de-usuario/etch-a-sketch.git
+git clone https://github.com/rafaelestevezdev/Etch-a-Sketch.git
 ```
 
 2. Abre el archivo `index.html` en tu navegador o usa un servidor local.
